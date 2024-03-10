@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Gestion des utilisateurs {% endblock %}
+
+{% block body %}
+<section class="users">
+  <h1>Gestion des utilisateurs</h1>
+  <div class="users_list">
+    <table class="responsive-table">
+      <tr>
+        <th>Id</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Nom d'utilisateur</th>
+        <th>Email</th>
+        <th>Mot de passe</th>
+        <th>Adresse</th>
+        <th>Région</th>
+        <th>Code postal</th>
+        <th>Ville</th>
+        <th>Pays</th>
+        <th>Téléphone</th>
+        <th>Statut</th>
+        <th>Rôle</th>
+        <th>Localisation</th>
+        <th>IP</th>
+        <th>Action</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>*******</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.district }}</td>
+        <td>{{ user.postalCode }}</td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.country }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{% if user.enabled %} Activé {% else %} En cours de validation {% endif %}</td>
+        <td>{% if user.roles[0] == 'ROLE_USER' %} Utilisateur {% else %} Administrateur {% endif %}</td>
+        <td>{{ user.location }}</td>
+        <td>{{ user.ip }}</td>
+        <td>
+          <a class="waves-effect waves-light btn orange" href="{{ path('admin_user_update', {'id' : user.id } ) }}" title="Modifer">Modifier</a>
+          <a class="waves-effect waves-light btn red" href="{{ path('admin_user_delete', {'id' : user.id } ) }}" title="Supprimer">Supprimer</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <a class="waves-effect waves-light btn green" href="{{ path('admin_user_add') }}" title="Ajouter">Ajouter</a>
+  {# FORM'S RESPONSE #}
+  {% for message in app.flashes('success') %}
+  <p class="success">{{ message }}</p>
+  {% endfor %}
+</section>
+{% endblock %}

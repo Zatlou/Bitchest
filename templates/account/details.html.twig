@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails {% endblock %}
+
+{% block body %}
+<section class="profile">
+  <div class="profile__left">
+    <img src="{{ currency.thumbnailUrl }}" alt="{{ currency.name }}" title="{{ currency.name }}" />
+  </div>
+  <div class="profile__right">
+    <h1>{{ currency.name }} ({{ currency.acronym }})</h1>
+    <table>
+      <tr>
+        <th></th>
+        <th>Compte n°</th>
+        <th>État</th>
+        <th>Quantité</th>
+        <th>Cours</th>
+        <th>Total</th>
+        <th>Date</th>
+      </tr>
+      {# Purchase transaction in progress or validated about the currency #}
+      {% for transaction in transactions %}
+      <tr>
+        <td></td>
+        <td>{{ transaction.accountId }}</td>
+        <td>Validé</td>
+        <td>{{ transaction.quantity|round(2, 'floor') }}</td>
+        <td>{{ transaction.price|round(2, 'floor') }} &euro;</td>
+        <td>{{ transaction.amount|round(2, 'floor') }} &euro;</td>
+        <td>{{ transaction.date|date('d/m/Y') }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Commande de {{ currency.name }} {% endblock %}
+
+{% block body %}
+<section class="profile order">
+  <div class="profile__left">
+    <img src="{{ currency.thumbnailUrl }}" alt="{{ currency.name }}" title="{{ currency.name }}" />
+  </div>
+  <div class="profile__right">
+    <h1>Commande de {{ currency.name }}</h1>
+    <p>1 {{ currency.acronym }} = {{ currency.rates[currency.rates|length - 1].price }} &euro;</p>
+    {{ form_start(orderForm) }}
+    {{ form_end(orderForm) }}
+    {# FORM'S RESPONSE #}
+    {% for message in app.flashes('error') %}
+    <p class="error">{{ message }}</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

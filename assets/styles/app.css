@@ -1,0 +1,69 @@
+:root {
+    --pink: #ff5964;
+    
+    --dark-blue: #38618c;
+    
+    --white-blue: #35a7ff;
+    
+    --green: #01ff19;
+    
+    --white: #ffffff;
+    
+    
+    }
+    
+    
+    /* Rose */
+    .pink {
+        color: var(--pink);
+    }
+    
+    .bg-pink {
+        background-color: var(--pink);
+    }
+    .border-pink{
+        border-color: var(--pink) ;
+    }
+    /* Bleu foncé */
+    .dark-blue {
+        color: var(--dark-blue);
+    }
+    
+    .bg-dark-blue {
+        background-color: var(--dark-blue);
+    }
+    
+    /* Bleu clair */
+    .white-blue {
+        color: var(--white-blue);
+    }
+    
+    .bg-white-blue {
+        background-color: var(--white-blue);
+    }
+    
+    /* Vert */
+    .green {
+        color: var(--green);
+    }
+    
+    .bg-green {
+        background-color: var(--green);
+    }
+    
+    /* Blanc */
+    .white {
+        color: var(--white);
+    }
+    
+    .bg-white {
+        background-color: var(--white);
+    }
+    
+    
+    
+    
+    body {
+        background-color: #35a7ff;
+    
+    }

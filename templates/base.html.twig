@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope>
+<head>
+  <!-- METAS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %} Achat et vente de crypto-monnaie {% endblock %} — Bitchest</title>
+  <meta name="description" content="Achat et vente de crypto-monnaie">
+  <meta name="keywords" content="cryptocurrencies, crypto-monnaies, bitcoin, ethereum, blockchain">
+  <meta name="author" content="anusanbsk">
+  <meta NAME="designer" content="anusanbsk">
+  <meta name="publisher" content="anusanbsk">
+  <meta name="reply-to" content="anusan.baskaramoorthy@yahoo.com">
+  <meta name="copyright" content="Bitchest">
+  <meta name="subject" content="Achat et vente de crypto-monnaie">
+  <meta name="identifier-url" content="https://www.anusanbsk.com">
+  <meta name="geography" content="France">
+  <meta name="language" content="French">
+  <meta name="robots" content="index, follow">
+  <!-- Google+ -->
+  <meta itemprop="name" content="Bitchest">
+  <meta itemprop="description" content="Achat et vente de crypto-monnaie">
+  <meta itemprop="image" content="{{ asset('favicons/android-icon-192x192.png') }}">
+  <link rel="author" href="http://google.com/+anusanbsk" />
+  <link rel="publisher" href="http://google.com/+anusanbsk" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@anusanbsk">
+  <meta name="twitter:title" content="Bitchest">
+  <meta name="twitter:description" content="Achat et vente de crypto-monnaie">
+  <meta name="twitter:creator" content="@anusanbsk">
+  <meta name="twitter:url" content="https://www.anusanbsk.com" />
+  <meta name="twitter:domain" content="https://www.anusanbsk.com" />
+  <meta name="twitter:image:src" content="{{ asset('favicons/android-icon-192x192.png') }}">
+  <!-- Facebook -->
+  <meta property="og:title" content="Bitchest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://anusanbsk.com" />
+  <meta property="og:image" content="{{ asset('favicons/android-icon-192x192.png') }}" />
+  <meta property="og:description" content="Achat et vente de crypto-monnaie" />
+  <meta property="og:site_name" content="Bitchest" />
+  <meta property="article:published_time" content="" />
+  <meta property="author" content="anusanbsk" />
+  <meta property="article:author" content="https://www.facebook.com/anusanbsk" />
+  <meta property="article:publisher" content="https://www.facebook.com/anusanbsk" />
+  <!-- FAVICONS -->
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicons/apple-icon-60x60.png') }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicons/apple-icon-72x72.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('favicons/apple-icon-76x76.png') }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('favicons/apple-icon-114x114.png') }}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('favicons/apple-icon-120x120.png') }}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicons/apple-icon-144x144.png') }}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('favicons/apple-icon-152x152.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-icon-180x180.png') }}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicons/android-icon-192x192.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{{ asset('favicons/ms-icon-144x144.png') }}">
+  <meta name="theme-color" content="#ffffff">
+  <!-- CSS -->
+  {% block stylesheets %}
+  {{ encore_entry_link_tags('app') }}
+  <link rel="stylesheet" href="/build/app.css">
+  {% endblock %}
+  <!-- MATERIALIZE -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800%7CRoboto:400,700,900" rel="stylesheet">
+  <!-- GOOGLE ANALYTICS -->
+</head>
+<body>
+  <!-- SIDEBAR -->
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+  {% set route = app.request.attributes.get('_route') %}
+  <nav>
+    <a href="#" data-target="slide-out" class="sidenav-trigger" title="Menu"><i class="material-icons">menu</i></a>
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background"></div>
+          <a href="{{ path('profile') }}" title="Mon profil"><img class="circle" src="{{ asset('userprofile.png') }}" alt="{{ app.user.username }}" title="{{ app.user.username }}" /></a>
+          <a href="{{ path('profile') }}" title="Mon profile"><span class="white-text name">{{ app.user.username }}</span></a>
+          <a href="{{ path('profile') }}" title="Mon profile"><span class="white-text email">{{ app.user.email }}</span></a>
+          <div class="row">
+            <div class="col s12">
+              <a href="{{ path('app_logout') }}" class="waves-effect waves-light btn">Déconnexion</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a class="waves-effect {% if route starts with 'currency' %} selected {% endif %}" href="{{ path('currency') }}" title="Accueil">Accueil</a></li>
+      <li><a class="waves-effect {% if route starts with 'profile' %} selected {% endif %}" href="{{ path('profile') }}" title="Mon profile">Mon profil</a></li>
+      {% if not is_granted('ROLE_ADMIN') %}
+      <li><a class="waves-effect {% if route starts with 'account' %} selected {% endif %}" href="{{ path('account') }}" title="Mon portefeuille">Mon portefeuille</a></li>
+      {% endif %}
+      {% if is_granted('ROLE_ADMIN') %}
+      <li><a class="waves-effect {% if route starts with 'admin' %} selected {% endif %}" href="{{ path('admin_users') }}" title="Gestion des utilisateurs">Gestion des utilisateurs</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+  {% block body %}
+  {% endblock %}
+  <!-- JS -->
+  {% block javascripts %}
+  {{ encore_entry_script_tags('app') }}
+  <script src="/build/runtime.js"></script>
+  <script src="/build/app.js"></script>
+  {% endblock %}
+  <!-- MATERIALIZE -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+<section class="profile">
+  <div class="profile__left">
+    <img src="{{ asset('userprofile.png') }}" alt="{{ app.user.firstname }}" title="{{ app.user.firstname }}" />
+  </div>
+  <div class="profile__right">
+    <h1>{{ title }}</h1>
+    {{ form_start(userForm) }}
+    {{ form_end(userForm) }}
+  </div>
+</section>
+{% endblock %}

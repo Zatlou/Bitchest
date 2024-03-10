@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon portefeuille {% endblock %}
+
+{% block body %}
+{% set account = app.user.accounts[0] %}
+<section class="account">
+  <h1>Mon portefeuille</h1>
+  <h2>Bilan mensuel</h2>
+  <div class="stats row">
+    {# CREDIT  #}
+    <div class="col m4 s12">
+      <div class="card card__credit">
+        <div class="card-image">
+          <span class="card-title">Crédit</span>
+        </div>
+        <div class="card-content">
+          <p>{{ account.credit|round(2, 'floor') }} &euro;</p>
+        </div>
+      </div>
+    </div>
+    {# DEBIT #}
+    <div class="col m4 s12">
+      <div class="card card__debit">
+        <div class="card-image">
+          <span class="card-title">Dépense</span>
+        </div>
+        <div class="card-content">
+          <p>{{ account.debit|round(2, 'floor') }} &euro;</p>
+        </div>
+      </div>
+    </div>
+    {# BALANCE #}
+    <div class="col m4 s12">
+      <div class="card card__balance">
+        <div class="card-image">
+          <span class="card-title">Balance</span>
+        </div>
+        <div class="card-content">
+          <p>{{ account.balance|round(2, 'floor') }} &euro;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>Mes crytpos</h2>
+  {# FORM'S RESPONSE #}
+  {% for message in app.flashes('success') %}
+  <p class="success">{{ message }}</p>
+  {% endfor %}
+  {# CURRENCIES #}
+  <div class="list">
+    <table>
+      <tr>
+        <th></th>
+        <th>Crytpo-monnaie</th>
+        <th>Quantité</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+      {% for currency in currencies %}
+      {% set price = currency.price %}
+      {% set gain = price * currency.quantity %}
+      <tr>
+        <td><img src="{{ currency.thumbnailUrl }}" alt="{{ currency.name }}" title="{{ currency.name }}" /></td>
+        <td>{{ currency.name }} ({{ currency.acronym }})</td>
+        <td>{{ currency.quantity|round(2, 'floor') }}</td>
+        <td>{{ currency.amount|round(2, 'floor') }} &euro;</td>
+        <td class="align-right">
+          <a class="waves-effect waves-light btn" href="{{ path('account_details', {'currencyId' : currency.id }) }}" title="Détail">Détail</a>
+          <a class="waves-effect waves-light btn orange" href="{{ path('account_sell', {'currencyId' : currency.id }) }}" title="Vendre">Vendre (+ {{ gain|round(2, 'floor') }} &euro;)</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endblock %}

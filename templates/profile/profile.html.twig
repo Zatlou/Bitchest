@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon profil {% endblock %}
+
+{% block body %}
+<section class="profile">
+  <div class="profile__left">
+    <img src="{{ asset('userprofile.png') }}" alt="{{ app.user.firstname }}" title="{{ app.user.firstname }}" />
+  </div>
+  <div class="profile__right">
+    <h1>{{ app.user.firstname }} {{ app.user.lastname }}</h1>
+    <table>
+      <tr>
+        <th>Nom d'utilisateur</th>
+        <td>{{ app.user.username }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ app.user.email }}</td>
+      </tr>
+      <tr>
+        <th>Mot de passe</th>
+        <td>*******</td>
+      </tr>
+      <tr>
+        <th>Adresse</th>
+        <td>{{ app.user.address }}</td>
+      </tr>
+      <tr>
+        <th>Région</th>
+        <td>{{ app.user.district }}</td>
+      </tr>
+      <tr>
+        <th>Code postal</th>
+        <td>{{ app.user.postalCode }}</td>
+      </tr>
+      <tr>
+        <th>Ville</th>
+        <td>{{ app.user.city }}</td>
+      </tr>
+      <tr>
+        <th>Pays</th>
+        <td>{{ app.user.country }}</td>
+      </tr>
+      <tr>
+        <th>Téléphone</th>
+        <td>{{ app.user.phone }}</td>
+      </tr>
+      {% if is_granted('ROLE_ADMIN') %}
+      <tr>
+        <th>Statut</th>
+        <td>{% if app.user.enabled %} Activé {% else %} En cours de validation {% endif %}</td>
+      </tr>
+      <tr>
+        <th>Rôle</th>
+        <td>Administrateur</td>
+      </tr>
+      <tr>
+        <th>Localisation</th>
+        <td>{{ app.user.location }}</td>
+      </tr>
+      <tr>
+        <th>IP</th>
+        <td>{{ app.user.ip }}</td>
+      </tr>
+      {% endif %}
+    </table>
+    <a class="waves-effect waves-light btn" href="{{ path('profile_update', {'id' : app.user.id } ) }}" title="Mettre à jour">Mettre à jour</a>
+    {# FORM'S RESPONSE #}
+    {% for message in app.flashes('success') %}
+    <p class="success">{{ message }}</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
